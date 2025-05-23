@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎲 Fun Name Picker 🎉</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">🎲 Fun Name Picker 🎉</h1>
+            <p class="subtitle">Ready to discover who's up next?</p>
+        </header>
+
+        <main>
+            <div class="name-display-container">
+                <div class="name-display" id="nameDisplay">
+                    <span class="question-mark">?</span>
+                </div>
+                <div class="sparkles" id="sparkles"></div>
+            </div>
+
+            <div class="controls">
+                <button class="pick-button" id="pickButton">
+                    <span class="button-text">🎯 Pick a Name!</span>
+                    <div class="button-glow"></div>
+                </button>
+                
+                <div class="animation-controls">
+                    <label class="toggle-container">
+                        <input type="checkbox" id="animationToggle" checked>
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-label">✨ Dramatic Reveal</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="names-list">
+                <h3>📋 Available Names:</h3>
+                <div class="names-grid" id="namesGrid">
+                    <!-- Names will be populated by JavaScript -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>🌟 Made with love for random fun! 🌟</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
