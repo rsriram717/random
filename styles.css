@@ -236,6 +236,39 @@ header {
     margin-top: 1rem;
 }
 
+.no-repeat-controls {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.reset-names-btn {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+    border: none;
+    border-radius: 25px;
+    padding: 0.6rem 1.2rem;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    white-space: nowrap;
+}
+
+.reset-names-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.reset-names-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+}
+
 .toggle-container {
     display: inline-flex;
     align-items: center;
@@ -297,12 +330,82 @@ header {
     font-weight: 600;
 }
 
-.names-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
+.names-counter {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 500;
 }
 
+/* Name Management Styles */
+.name-management {
+    margin-bottom: 1.5rem;
+}
+
+.add-name-container {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#nameInput {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#nameInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#nameInput:focus {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.add-name-btn {
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    border: none;
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+
+.add-name-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #44a08d, #4ecdc4);
+}
+
+.add-name-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.add-name-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Enhanced Name Chip Styles */
 .name-chip {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
     padding: 0.8rem 1rem;
@@ -313,6 +416,183 @@ header {
     transition: all 0.3s ease;
     cursor: pointer;
     border: 2px solid transparent;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+}
+
+.name-chip .name-text {
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.name-chip .name-actions {
+    display: flex;
+    gap: 0.3rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.name-chip:hover .name-actions {
+    opacity: 1;
+}
+
+.name-chip:hover .name-text {
+    padding-right: 60px;
+}
+
+.name-chip .edit-btn,
+.name-chip .delete-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+}
+
+.name-chip .edit-btn:hover {
+    background: #4ecdc4;
+    color: white;
+    transform: scale(1.1);
+}
+
+.name-chip .delete-btn:hover {
+    background: #ff6b6b;
+    color: white;
+    transform: scale(1.1);
+}
+
+.name-chip.editing {
+    background: linear-gradient(145deg, #fff, #f8f9fa);
+    border-color: #4ecdc4;
+    box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+}
+
+.name-chip.editing .name-text {
+    display: none;
+}
+
+.name-chip.editing .name-actions {
+    display: none;
+}
+
+.name-chip .edit-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+}
+
+/* Confirmation Modal Styles */
+.confirmation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.confirmation-modal.show {
+    opacity: 1;
+}
+
+.confirmation-content {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.confirmation-modal.show .confirmation-content {
+    transform: scale(1);
+}
+
+.confirmation-content h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.confirmation-content p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.confirmation-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.confirm-btn, .cancel-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.confirm-btn {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+    color: white;
+}
+
+.confirm-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.cancel-btn {
+    background: #f8f9fa;
+    color: #333;
+    border: 2px solid #dee2e6;
+}
+
+.cancel-btn:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.names-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
 }
 
 .name-chip:hover {
@@ -326,6 +606,39 @@ header {
     color: white;
     transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.name-chip.used {
+    background: linear-gradient(145deg, rgba(150, 150, 150, 0.5), rgba(120, 120, 120, 0.4));
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 0.6;
+    position: relative;
+    cursor: default;
+}
+
+.name-chip.used::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #4ecdc4;
+    font-weight: bold;
+}
+
+.name-chip.used:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.name-chip.used .name-actions {
+    opacity: 0 !important;
+}
+
+.name-chip.used .name-text {
+    padding-right: 30px;
 }
 
 footer {
@@ -363,5 +676,55 @@ footer {
     .names-grid {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         gap: 0.8rem;
+    }
+    
+    .add-name-container {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    
+    .add-name-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .name-chip {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.9rem;
+        min-height: 44px;
+    }
+    
+    .name-chip:hover .name-text {
+        padding-right: 50px;
+    }
+    
+    .name-chip .name-actions {
+        right: 6px;
+    }
+    
+    .name-chip .edit-btn,
+    .name-chip .delete-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+    
+    .confirmation-content {
+        padding: 1.5rem;
+    }
+    
+    .confirmation-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .no-repeat-controls {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .reset-names-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
     }
 } 

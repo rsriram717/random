@@ -35,10 +35,35 @@
                         <span class="toggle-label">✨ Dramatic Reveal</span>
                     </label>
                 </div>
+                
+                <div class="no-repeat-controls">
+                    <label class="toggle-container">
+                        <input type="checkbox" id="noRepeatToggle">
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-label">🔄 No Repeats</span>
+                    </label>
+                    <button id="resetNamesBtn" class="reset-names-btn" style="display: none;">
+                        <span>🔄 Reset All Names</span>
+                    </button>
+                </div>
             </div>
 
             <div class="names-list">
                 <h3>📋 Available Names:</h3>
+                <div class="names-counter" id="namesCounter" style="display: none;">
+                    <!-- Will be populated by JavaScript when no-repeat is enabled -->
+                </div>
+                
+                <!-- Name Management Interface -->
+                <div class="name-management">
+                    <div class="add-name-container">
+                        <input type="text" id="nameInput" placeholder="Enter a new name..." maxlength="50" autocomplete="off">
+                        <button id="addNameBtn" class="add-name-btn">
+                            <span>➕ Add Name</span>
+                        </button>
+                    </div>
+                </div>
+                
                 <div class="names-grid" id="namesGrid">
                     <!-- Names will be populated by JavaScript -->
                 </div>
